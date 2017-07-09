@@ -39,6 +39,9 @@ $ ./gbombd -verbose -size 1024 -port 81 -preserve
 
 ### Tests
 1. curl: Never stops loading content and CPU usage goes up.
+2. Nikto: ignores the data.
+3. sqlmap: same as curl.
+4. thc-hydra: same as sqlmap but CPU usage is low.
 
 ## Why? Go is fun and annoying some people is even funnier.
 
