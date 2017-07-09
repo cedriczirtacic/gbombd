@@ -31,7 +31,7 @@ var (
     // this common files
 	handle   = []string{"/", "/robots.txt", "/admin", "/.htpasswd"}
 	useragents = []string{ // user agent list!
-		"(hydra)", ".nasl", "absinthe", "advanced email extractor",
+		"(Hydra)", ".nasl", "absinthe", "advanced email extractor",
 		"arachni/", "autogetcontent", "bilbo", "BFAC",
 		"brutus", "brutus/aet", "bsqlbf", "cgichk",
 		"cisco-torch", "commix", "core-project/1.0", "crimscanner/",
@@ -49,7 +49,7 @@ var (
 		"voideye", "w3af.sf.net", "w3af.sourceforge.net", "w3af.org",
 		"webbandit", "webinspect", "webshag", "webtrends security analyzer",
 		"webvulnscan", "whatweb", "whcc/", "wordpress hash grabber",
-		"xmlrpc exploit", "WPScan", "curl", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; FDM; .NET CLR 2.0.50727; InfoPath.2; .NET CLR 1.1.4322)",
+		"xmlrpc exploit", "WPScan", "curl",
 	}
 )
 
