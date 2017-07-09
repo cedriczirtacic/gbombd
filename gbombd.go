@@ -40,7 +40,7 @@ var (
 		"gootkit auto-rooter scanner", "grabber", "grendel-scan", "havij",
 		"inspath", "internet ninja", "jaascois", "zmeu", "masscan", "metis", "morfeus fucking scanner",
 		"mysqloit", "n-stealth", "nessus", "netsparker",
-		"nikto", "nmap nse", "nmap scripting engine", "nmap-nse",
+		"Nikto", "nmap nse", "nmap scripting engine", "nmap-nse",
 		"nsauditor", "openvas", "pangolin", "paros",
 		"pmafind", "prog.customcrawler", "qualys was", "s.t.a.l.k.e.r.",
 		"security scan", "springenwerk", "sql power injector", "sqlmap",
@@ -49,7 +49,7 @@ var (
 		"voideye", "w3af.sf.net", "w3af.sourceforge.net", "w3af.org",
 		"webbandit", "webinspect", "webshag", "webtrends security analyzer",
 		"webvulnscan", "whatweb", "whcc/", "wordpress hash grabber",
-		"xmlrpc exploit", "WPScan", "curl",
+		"xmlrpc exploit", "WPScan", "curl", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; FDM; .NET CLR 2.0.50727; InfoPath.2; .NET CLR 1.1.4322)",
 	}
 )
 
@@ -86,7 +86,8 @@ func blast_into_oblivion(w http.ResponseWriter, r *http.Request) {
 			fi, _ := bomb.Stat()
 			fsize := fi.Size()
 			if verbose {
-				fmt.Printf("[+] Serving %d bytes gzipped to %s\n", fsize, r.RemoteAddr)
+                fmt.Printf("[+] Serving %d bytes gzipped to %s (UA:\"%s\")\n",
+                    fsize, r.RemoteAddr, useragents[j])
 			}
 
 			w.Header().Add("Content-Encoding", "gzip")
@@ -127,7 +128,7 @@ func main() {
 
 		// use /usr/bin/dd and /us/bin/gzip to create content faster and realiable
 		// piping output to file
-		fill_cmd := fmt.Sprintf("(echo '<html>' && dd if=/dev/zero bs=1m  count=%d) | gzip -5 -c --", sizen)
+		fill_cmd := fmt.Sprintf("(echo '<html>' && dd if=/dev/zero bs=1M count=%d) | gzip -5 -c --", sizen)
 		cmd := exec.Command("sh", "-c", fill_cmd)
 		cmd.Stdout = bomb
 		cmd_err, _ := cmd.StderrPipe()
@@ -151,12 +152,15 @@ func main() {
 	}
 
 	go func() {
+        if verbose {
+            fmt.Printf("[+] Serving data on port %d/TCP\n", portn)
+        }
 		if err := http.ListenAndServe(fmt.Sprintf(":%d", portn), nil); err != nil {
 			fmt.Fprintf(os.Stderr, "[-] Error creating httpd server (\"%s\")\n", err)
 			os.Exit(1)
 		}
 	}()
 	sig := <-c_sig
-	fmt.Printf("[i] Catched signal: %s. Exiting...\n", sig.String())
+	fmt.Printf("\r[i] Catched signal: %s. Exiting...\n", sig.String())
 
 }
