@@ -27,10 +27,11 @@ var (
 	fname    string
 	portn    int
 	sizen    int
-    // we want the scanners/bots to recognize
-    // this common files
-	handle   = []string{"/", "/robots.txt", "/admin", "/.htpasswd"}
-	useragents = []string{ // user agent list!
+	// we want the scanners/bots to recognize
+	// this common files
+	handle = []string{"/", "/robots.txt", "/admin", "/.htpasswd"}
+	// user agent list!
+	useragents = []string{
 		"(Hydra)", ".nasl", "absinthe", "advanced email extractor",
 		"arachni/", "autogetcontent", "bilbo", "BFAC",
 		"brutus", "brutus/aet", "bsqlbf", "cgichk",
@@ -86,8 +87,8 @@ func blast_into_oblivion(w http.ResponseWriter, r *http.Request) {
 			fi, _ := bomb.Stat()
 			fsize := fi.Size()
 			if verbose {
-                fmt.Printf("[+] Serving %d bytes gzipped to %s (UA:\"%s\")\n",
-                    fsize, r.RemoteAddr, useragents[j])
+				fmt.Printf("[+] Serving %d bytes gzipped to %s (UA:\"%s\")\n",
+					fsize, r.RemoteAddr, useragents[j])
 			}
 
 			w.Header().Add("Content-Encoding", "gzip")
@@ -152,9 +153,9 @@ func main() {
 	}
 
 	go func() {
-        if verbose {
-            fmt.Printf("[+] Serving data on port %d/TCP\n", portn)
-        }
+		if verbose {
+			fmt.Printf("[+] Serving data on port %d/TCP\n", portn)
+		}
 		if err := http.ListenAndServe(fmt.Sprintf(":%d", portn), nil); err != nil {
 			fmt.Fprintf(os.Stderr, "[-] Error creating httpd server (\"%s\")\n", err)
 			os.Exit(1)
