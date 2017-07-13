@@ -24,6 +24,7 @@ Usage of ./gbombd:
   -verbose
     	Be verbose
 ```
+
 By default it will open port 80 and you will need more privileges for that. The default file size is 10G and name **bomb.gz**. The file will be removed once the application exits but you can avoid that by using the **-preserve** switch.
 
 ## Why? Go is fun and annoying some people is even funnier.
