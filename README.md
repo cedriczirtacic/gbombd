@@ -39,6 +39,8 @@ $ ./gbombd -verbose -size 1024 -port 81 -preserve
 
 ### Tests
 1. curl: Never stops loading content and CPU usage goes up.
+2. Nikto: ignores the data.
+3. sqlmap: same as curl.
 
 ## Why? Go is fun and annoying some people is even funnier.
 
