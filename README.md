@@ -5,12 +5,12 @@ It simply creates a **big** file with repetitive data (in this case zeros), so t
 Got the idea from [here](https://blog.haschek.at/2017/how-to-defend-your-website-with-zip-bombs.html).
 ## Compile
 Build it using the Go complier (you don't need to *go get* anything):
-````bash
+```bash
 $ go build -v -o gbombd gbombd.go
 ```
 
 ## Using this thing
-````bash
+```bash
 $ ./gbombd -help
 Usage of ./gbombd:
   -filename string
