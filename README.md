@@ -27,5 +27,18 @@ Usage of ./gbombd:
 
 By default it will open port 80 and you will need more privileges for that. The default file size is 10G and name **bomb.gz**. The file will be removed once the application exits but you can avoid that by using the **-preserve** switch.
 
+```bash
+$ ./gbombd -verbose -size 1024 -port 81 -preserve
+[+] Creating file: bomb.gz. Wait...
+[+] Done!
+[+] Serving data on port 81/TCP
+[+] Serving 1042079 bytes gzipped to [::1]:34062 (UA:"curl")
+[i] Catched signal: interrupt. Exiting...
+[+] Removing bomb file: bomb.gz
+```
+
+### Tests
+1. curl: Never stops loading content and CPU usage goes up.
+
 ## Why? Go is fun and annoying some people is even funnier.
 
